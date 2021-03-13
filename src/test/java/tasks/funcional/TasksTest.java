@@ -16,13 +16,9 @@ import java.util.concurrent.TimeUnit;
 public class TasksTest {
 
     public WebDriver acessarAplicacao() throws MalformedURLException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-
-        WebDriver driver = new RemoteWebDriver(new URL("http://172.19.0.1:4444/wd/hub"), options);
-        driver.navigate().to("http://localhost:8001/tasks/");
+        DesiredCapabilities cap = DesiredCapabilities.chrome();
+        WebDriver driver = new RemoteWebDriver(new URL("http://172.20.0.2:4444/wd/hub"), cap);
+        driver.navigate().to("http://172.18.0.1:8001/tasks/");
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
